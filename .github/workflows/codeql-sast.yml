@@ -1,4 +1,3 @@
-
 name: "CodeQL Advanced"
 
 on:
@@ -23,7 +22,6 @@ jobs:
         include:
         - language: actions
           build-mode: none
-
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -34,19 +32,13 @@ jobs:
         languages: ${{ matrix.language }}
         build-mode: ${{ matrix.build-mode }}
 
-    - if: matrix.build-mode == 'manual'
-      shell: bash
-      run: |
-        echo 'Manual build mode selected, replace this with build commands'
-        exit 1
-
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
       with:
         category: "/language:${{matrix.language}}"
 
     - name: Upload CodeQL Results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: codeql-results
         path: /home/runner/work/app-sec-testing/results
