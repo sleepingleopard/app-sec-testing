@@ -3,9 +3,9 @@ name: ZAP-DAST
 
 on:
   push:
-    branches: [ "dast-pipeline" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "dast-pipeline" ]
+    branches: [ "main" ]
 
 jobs:
   build:
