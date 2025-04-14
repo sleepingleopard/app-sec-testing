@@ -23,7 +23,7 @@ jobs:
         - language: actions
           build-mode: none
     steps:
-    - name: Checkout repository
+    - name: Checkout Repository
       uses: actions/checkout@v4
       with:
         repository: juice-shop/juice-shop
