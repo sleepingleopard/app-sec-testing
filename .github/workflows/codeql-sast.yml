@@ -38,9 +38,10 @@ jobs:
       uses: github/codeql-action/analyze@v3
       with:
         category: "/language:${{matrix.language}}"
+        token: ${{ secrets.ARTIFACT_TOKEN }}
 
-    - name: Upload CodeQL Results
-      uses: actions/upload-artifact@v4
-      with:
-        name: codeql-results
-        path: /home/runner/work/app-sec-testing/results
+    # - name: Upload CodeQL Results
+    #   uses: actions/upload-artifact@v4
+    #   with:
+    #     name: codeql-results
+    #     path: /home/runner/work/app-sec-testing/results
