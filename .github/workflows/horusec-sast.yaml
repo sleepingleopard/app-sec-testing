@@ -1,0 +1,43 @@
+name: "Semgrep SAST"
+
+on:
+  push:
+    branches: [ "horusec" ]
+  pull_request:
+    branches: [ "horusec" ]
+
+jobs:
+  analyze:
+    name: Analyze with Horusec
+    runs-on: 'ubuntu-latest'
+    permissions:
+      security-events: write
+      packages: read
+      actions: read
+      contents: read
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+        - language: actions
+          build-mode: none
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        repository: juice-shop/juice-shop
+    
+    - name: Run horusec Scan
+      run: | 
+        docker run -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/src horuszup/horusec-cli:latest horusec start -p /src -P $(pwd)
+    
+    # - name: Upload semgrep Results
+    #   uses: actions/upload-artifact@v4
+    #   with:
+    #     name: semgrep-results
+    #     path: ./report.tsv
+
+
+
+docker run -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/src horuszup/horusec-cli:latest horusec start -p /src -P $(pwd)
