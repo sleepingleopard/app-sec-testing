@@ -2,9 +2,9 @@ name: "CodeQL Advanced"
 
 on:
   push:
-    branches: [ "semgrep" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "semgrep" ]
+    branches: [ "main" ]
 
 jobs:
   analyze:
