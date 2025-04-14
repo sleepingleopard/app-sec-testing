@@ -2,9 +2,9 @@ name: "CodeQL Advanced"
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "semgrep" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "semgrep" ]
 
 jobs:
   analyze:
@@ -25,6 +25,8 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+      with:
+        repository: juice-shop/juice-shop
 
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3

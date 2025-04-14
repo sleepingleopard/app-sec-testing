@@ -2,9 +2,9 @@ name: "semgrep scan"
 
 on:
   push:
-    branches: [ "semgrep" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "semgrep" ]
+    branches: [ "main" ]
 
 jobs:
   analyze:
