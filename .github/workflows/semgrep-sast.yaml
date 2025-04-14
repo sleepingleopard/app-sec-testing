@@ -35,10 +35,10 @@ jobs:
     
     - name: Run semgrep scan
       run: | 
-        semgrep scan --config auto > ${{ env.GITHUB_WORKSPACE }}/report.tsv
+        semgrep scan --config auto > report.tsv
     
     - name: Upload semgrep Results
       uses: actions/upload-artifact@v4
       with:
         name: semgrep-results
-        path: ${{ env.GITHUB_WORKSPACE }}/report.tsv
+        path: ./report.tsv
