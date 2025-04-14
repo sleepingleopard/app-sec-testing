@@ -2,9 +2,9 @@ name: "Semgrep SAST"
 
 on:
   push:
-    branches: [ "horusec" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "horusec" ]
+    branches: [ "main" ]
 
 jobs:
   analyze:
