@@ -30,10 +30,10 @@ jobs:
     
     - name: Run horusec Scan
       run: | 
-        docker run -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/src horuszup/horusec-cli:v2.9.0-beta.3 horusec start -p /src -P $(pwd)
+        docker run -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/src horuszup/horusec-cli:v2.9.0-beta.3 horusec start -p /src -P $(pwd) > results.tsv
     
-    # - name: Upload semgrep Results
-    #   uses: actions/upload-artifact@v4
-    #   with:
-    #     name: semgrep-results
-    #     path: ./report.tsv
+    - name: Upload horusec Results
+      uses: actions/upload-artifact@v4
+      with:
+        name: semgrep-results
+        path: ./results.tsv
