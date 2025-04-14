@@ -37,7 +37,3 @@ jobs:
     #   with:
     #     name: semgrep-results
     #     path: ./report.tsv
-
-
-
-docker run -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd):/src horuszup/horusec-cli:latest horusec start -p /src -P $(pwd)
