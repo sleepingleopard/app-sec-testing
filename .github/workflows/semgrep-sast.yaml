@@ -1,0 +1,44 @@
+name: "semgrep scan"
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  analyze:
+    name: Analyze (${{ matrix.language }})
+    runs-on: 'ubuntu-latest'
+    permissions:
+      security-events: write
+      packages: read
+      actions: read
+      contents: read
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+        - language: actions
+          build-mode: none
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        repository: juice-shop/juice-shop
+    
+    - name: Install semgrep
+      run: |
+        sudo apt update && sudo apt install python3 pip
+        python3 -m pip install semgrep
+    
+    - name: Run semgrep Scan
+      run: | 
+        semgrep scan --config auto > report.tsv
+    
+    - name: Upload semgrep Results
+      uses: actions/upload-artifact@v4
+      with:
+        name: semgrep-results
+        path: ./report.tsv
